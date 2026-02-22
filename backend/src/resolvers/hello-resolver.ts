@@ -1,5 +1,9 @@
-export const helloResolver = {
-  Query: {
-    hello: () => 'Hello world!',
-  },
-};
+import { Query, Resolver } from 'type-graphql';
+
+@Resolver()
+export class HelloResolver {
+    @Query(() => String)
+    hello(): string {
+        return 'Hello world!';
+    }
+}

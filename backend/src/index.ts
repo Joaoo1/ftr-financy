@@ -1,16 +1,19 @@
+import "reflect-metadata";
+
 import express from 'express';
 import cors from 'cors';
 import { ApolloServer } from 'apollo-server-express';
+import { buildSchema } from 'type-graphql';
 import { resolvers } from './resolvers';
-import { typeDefs } from './typeDefs';
 
 async function bootstrap() {
-  const server = new ApolloServer({ typeDefs, resolvers });
+  const schema = await buildSchema({ resolvers });
+  const server = new ApolloServer({ schema });
 
   const app = express()
 
   app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: '*',
     credentials: true,
   }))
 
