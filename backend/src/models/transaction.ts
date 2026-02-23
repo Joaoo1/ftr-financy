@@ -7,14 +7,12 @@ import {
   registerEnumType,
 } from "type-graphql";
 import { DateResolver } from "graphql-scalars";
+import { TransactionType } from "../../generated/prisma/enums";
 
-export enum TransactionType {
-  INCOME = "INCOME",
-  EXPENSE = "EXPENSE",
-}
+export { TransactionType };
 
 registerEnumType(TransactionType, {
-  name: "TransationType",
+  name: "TransactionType",
   description: "Type of the transaction",
 });
 
