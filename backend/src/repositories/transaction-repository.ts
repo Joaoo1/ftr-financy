@@ -13,11 +13,19 @@ export class TransactionRepository {
     return prisma.transaction.findFirst({ where: { id, userId } });
   }
 
-  async list(userId: string) {
-    return prisma.transaction.findMany({
-      where: { userId },
-      orderBy: { date: "desc" },
-    });
+  async list(userId: string, page: number, limit: number) {
+    const skip = (page - 1) * limit;
+    const [items, total] = await prisma.$transaction([
+      prisma.transaction.findMany({
+        where: { userId },
+        orderBy: { createdAt: "desc" },
+        include: { category: true },
+        skip,
+        take: limit,
+      }),
+      prisma.transaction.count({ where: { userId } }),
+    ]);
+    return { items, total };
   }
 
   async update(id: string, data: Omit<UpdateTransactionInput, "id">) {

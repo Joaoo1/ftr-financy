@@ -10,8 +10,8 @@ export class TransactionService {
     return this.repo.create(userId, input);
   }
 
-  async list(userId: string) {
-    return this.repo.list(userId);
+  async list(userId: string, page: number, limit: number) {
+    return this.repo.list(userId, page, limit);
   }
 
   async update(userId: string, input: UpdateTransactionInput) {

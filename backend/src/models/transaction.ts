@@ -8,6 +8,7 @@ import {
 } from "type-graphql";
 import { DateResolver } from "graphql-scalars";
 import { TransactionType } from "../../generated/prisma/enums";
+import { CategoryModel } from "./category";
 
 export { TransactionType };
 
@@ -44,4 +45,7 @@ export class TransactionModel {
 
   @Field(() => GraphQLISODateTime)
   updatedAt!: Date;
+
+  @Field(() => CategoryModel)
+  category?: CategoryModel;
 }
