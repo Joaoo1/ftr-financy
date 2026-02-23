@@ -4,6 +4,11 @@
   "description": "",
   "main": "index.js",
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^25.3.0",
+    "prisma": "^7.4.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
@@ -13,12 +18,17 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
+    "@prisma/adapter-better-sqlite3": "^7.4.1",
+    "@prisma/client": "^7.4.1",
     "apollo-server-express": "^3.13.0",
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
     "graphql": "^16.12.0",
     "graphql-scalars": "^1.25.0",
+    "jsonwebtoken": "^9.0.3",
     "reflect-metadata": "^0.2.2",
     "type-graphql": "^2.0.0-rc.3"
   }
