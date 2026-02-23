@@ -1,4 +1,11 @@
-import { Field, Float, GraphQLISODateTime, ID, ObjectType } from "type-graphql";
+import {
+  Field,
+  Float,
+  GraphQLISODateTime,
+  ID,
+  Int,
+  ObjectType,
+} from "type-graphql";
 
 @ObjectType()
 export class CategoryModel {
@@ -25,4 +32,10 @@ export class CategoryModel {
 
   @Field(() => GraphQLISODateTime)
   updatedAt!: Date;
+
+  @Field(() => Int)
+  transactionsCount?: number;
+
+  @Field(() => Float)
+  transactionsTotalAmount?: number;
 }

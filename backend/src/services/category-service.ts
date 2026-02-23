@@ -2,6 +2,7 @@ import { CategoryRepository } from "../repositories/category-repository";
 import { NotFoundError } from "../errors/not-found-error";
 import type { CreateCategoryInput } from "../dtos/create-category-input";
 import type { UpdateCategoryInput } from "../dtos/update-category-input";
+import { CategorySortBy } from "../dtos/category-list-args";
 
 export class CategoryService {
   private repo = new CategoryRepository();
@@ -10,8 +11,13 @@ export class CategoryService {
     return this.repo.create(userId, input);
   }
 
-  async list(userId: string) {
-    return this.repo.list(userId);
+  async list(
+    userId: string,
+    page: number,
+    limit: number,
+    sortBy: CategorySortBy,
+  ) {
+    return this.repo.list(userId, page, limit, sortBy);
   }
 
   async update(userId: string, input: UpdateCategoryInput) {

@@ -1,16 +1,10 @@
-import {
-  Arg,
-  Ctx,
-  ID,
-  Mutation,
-  Query,
-  Resolver,
-  UseMiddleware,
-} from "type-graphql";
+import { Arg, Args, Ctx, ID, Mutation, Query, Resolver } from "type-graphql";
 import { CategoryService } from "../services/category-service";
 import { CategoryModel } from "../models/category";
 import { CreateCategoryInput } from "../dtos/create-category-input";
 import { UpdateCategoryInput } from "../dtos/update-category-input";
+import { CategoryListArgs } from "../dtos/category-list-args";
+import { CategoryListOutput } from "../dtos/category-list-output";
 import { UnauthorizedError } from "../errors/unauthorized-error";
 import type { AppContext } from "../context";
 
@@ -23,10 +17,13 @@ function requireUserId(context: AppContext): string {
 export class CategoryResolver {
   private service = new CategoryService();
 
-  @Query(() => [CategoryModel])
-  async categories(@Ctx() ctx: AppContext): Promise<CategoryModel[]> {
+  @Query(() => CategoryListOutput)
+  async categories(
+    @Args(() => CategoryListArgs) { page, limit, sortBy }: CategoryListArgs,
+    @Ctx() ctx: AppContext,
+  ): Promise<CategoryListOutput> {
     const userId = requireUserId(ctx);
-    return this.service.list(userId);
+    return this.service.list(userId, page, limit, sortBy);
   }
 
   @Mutation(() => CategoryModel)

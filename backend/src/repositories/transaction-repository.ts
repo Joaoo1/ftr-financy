@@ -15,13 +15,15 @@ export class TransactionRepository {
 
   async list(userId: string, page: number, limit: number) {
     const skip = (page - 1) * limit;
+
+    const pagination = limit === 0 ? ({} as {}) : { skip, take: limit };
+
     const [items, total] = await prisma.$transaction([
       prisma.transaction.findMany({
         where: { userId },
         orderBy: { createdAt: "desc" },
         include: { category: true },
-        skip,
-        take: limit,
+        ...pagination,
       }),
       prisma.transaction.count({ where: { userId } }),
     ]);
