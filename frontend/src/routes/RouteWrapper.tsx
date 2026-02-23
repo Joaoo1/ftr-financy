@@ -23,7 +23,7 @@ export const RouteWrapper: React.FC<IRouteWrapperProps> = ({
   }
 
   if (!isPrivate && isLoggedIn) {
-    return <Navigate to="/home" />;
+    return <Navigate to="/dashboard" />;
   }
 
   return <>{children}</>;

@@ -1,10 +1,23 @@
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import { SetContextLink } from "@apollo/client/link/context";
+import localforage from "localforage";
 
-const apiLink = new HttpLink({
+const httpLink = new HttpLink({
   uri: "http://localhost:4000/graphql",
 });
 
+const authLink = new SetContextLink(async (prevContext) => {
+  const token = await localforage.getItem<string>("token");
+
+  return {
+    headers: {
+      ...prevContext.headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
+
 export const apolloClient = new ApolloClient({
-  link: apiLink,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
