@@ -159,8 +159,8 @@ export function CategoryModal({
                           className={cn(
                             "rounded-lg border",
                             selectedIcon === iconName
-                              ? "border-brand-base bg-white text-[#1e293b]"
-                              : "border-slate-200 hover:border-slate-300 bg-white text-slate-500",
+                              ? "border-brand-base bg-white text-gray-800"
+                              : "border-gray-200 hover:border-gray-300 bg-white text-gray-500",
                           )}
                         >
                           {Icon && (

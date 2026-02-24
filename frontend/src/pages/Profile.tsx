@@ -44,7 +44,7 @@ export default function Profile() {
     <main className="flex-1 p-12 flex items-center justify-center">
       <div className="w-full max-w-md p-8 bg-white rounded-xl border border-gray-200 flex flex-col gap-8">
         <div className="flex flex-col items-center gap-6">
-          <div className="w-16 h-16 bg-[#1e6e42] rounded-full flex items-center justify-center overflow-hidden">
+          <div className="w-16 h-16 bg-brand-base rounded-full flex items-center justify-center overflow-hidden">
             <span className="text-white text-2xl font-medium font-['Inter']">
               {user?.name ? getInitials(user.name) : "??"}
             </span>
@@ -108,7 +108,7 @@ export default function Profile() {
             <Button
               type="submit"
               disabled={isLoading || !name.trim() || name === user?.name}
-              className="h-12 bg-[#1e6e42] hover:bg-[#165a35] text-white text-base font-medium font-['Inter'] rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="h-12 bg-brand-base hover:bg-brand-dark text-white text-base font-medium font-['Inter'] rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <>

@@ -92,7 +92,7 @@ export default function Categories() {
           </div>
           <Button
             onClick={() => modal.openCreateModal()}
-            className="h-9 px-3 py-2 bg-[#1e6e42] hover:bg-[#165a35] text-white text-sm font-medium font-['Inter'] rounded-lg w-full sm:w-auto"
+            className="h-9 px-3 py-2 bg-brand-base hover:bg-brand-dark text-white text-sm font-medium font-['Inter'] rounded-lg w-full sm:w-auto"
           >
             <Plus className="w-4 h-4 mr-2" />
             Nova categoria
@@ -133,7 +133,7 @@ export default function Categories() {
               size="lg"
               hasBackground={false}
               iconName={mostUsedCategory?.icon ?? "Tag"}
-              color={mostUsedCategory?.color ?? "#64748B"}
+              color={mostUsedCategory?.color ?? "#6B7280"}
             />
 
             <div className="flex-1 flex flex-col gap-2">
@@ -180,16 +180,16 @@ export default function Categories() {
                       className="w-9 h-9 bg-white border border-gray-100 rounded-lg shadow-sm flex items-center justify-center hover:bg-gray-50 hover:border-gray-200 transition-all"
                       title="Editar"
                     >
-                      <SquarePen className="w-4 h-4 text-[#1E293B]" />
+                      <SquarePen className="w-4 h-4 text-gray-800" />
                     </Button>
                   </div>
                 </div>
 
                 <div className="mt-5 flex flex-col gap-1 flex-1">
-                  <h3 className="text-[#1E293B] text-[18px] font-bold leading-tight">
+                  <h3 className="text-gray-800 text-[18px] font-bold leading-tight">
                     {category.title}
                   </h3>
-                  <p className="text-[#64748B] text-sm font-normal line-clamp-2">
+                  <p className="text-gray-500 text-sm font-normal line-clamp-2">
                     {category.description || "Nenhuma descrição informada"}
                   </p>
                 </div>
@@ -206,7 +206,7 @@ export default function Categories() {
                       {category.title}
                     </p>
                   </div>
-                  <span className="text-[#64748B] text-sm font-medium">
+                  <span className="text-gray-500 text-sm font-medium">
                     {category.transactionsCount || 0} itens
                   </span>
                 </div>

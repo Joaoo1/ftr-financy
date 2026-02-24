@@ -124,7 +124,7 @@ export default function Transactions() {
           </div>
           <Button
             onClick={() => modal.openCreateModal()}
-            className="h-10 px-4 bg-[#1e6e42] hover:bg-[#165a35] text-white text-sm font-semibold rounded-lg"
+            className="h-10 px-4 bg-brand-base hover:bg-brand-dark text-white text-sm font-semibold rounded-lg"
           >
             <Plus className="w-4 h-4 mr-2" />
             Nova transação
@@ -158,7 +158,7 @@ export default function Transactions() {
                   <tr>
                     <td colSpan={6} className="h-40">
                       <div className="flex items-center justify-center h-full">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1e6e42]" />
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand-base" />
                       </div>
                     </td>
                   </tr>
@@ -249,7 +249,7 @@ export default function Transactions() {
                               className="w-9 h-9 bg-white border border-gray-100 rounded-lg shadow-sm flex items-center justify-center hover:bg-gray-50 hover:border-gray-200 transition-all"
                               title="Editar"
                             >
-                              <SquarePen className="w-4 h-4 text-[#1E293B]" />
+                              <SquarePen className="w-4 h-4 text-gray-800" />
                             </Button>
                           </div>
                         </td>
@@ -308,7 +308,7 @@ export default function Transactions() {
                           variant={page === pageNum ? "default" : "ghost"}
                           className={`h-8 w-8 p-0 text-sm font-bold transition-all ${
                             page === pageNum
-                              ? "bg-[#1e6e42] hover:bg-[#165a35] text-white shadow-sm"
+                              ? "bg-brand-base hover:bg-brand-dark text-white shadow-sm"
                               : "text-gray-500 hover:bg-gray-100"
                           }`}
                           onClick={() => setPage(pageNum)}
@@ -335,7 +335,7 @@ export default function Transactions() {
                       variant={page === pageNum ? "default" : "ghost"}
                       className={`h-8 w-8 p-0 text-sm font-bold transition-all ${
                         page === pageNum
-                          ? "bg-[#1e6e42] hover:bg-[#165a35] text-white shadow-sm"
+                          ? "bg-brand-base hover:bg-brand-dark text-white shadow-sm"
                           : "text-gray-500 hover:bg-gray-100"
                       }`}
                       onClick={() => setPage(pageNum)}
