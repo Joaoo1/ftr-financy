@@ -2,6 +2,7 @@ import { TransactionRepository } from "../repositories/transaction-repository";
 import { NotFoundError } from "../errors/not-found-error";
 import type { CreateTransactionInput } from "../dtos/create-transaction-input";
 import type { UpdateTransactionInput } from "../dtos/update-transaction-input";
+import type { TransactionFilter } from "../dtos/transaction-filter";
 
 export class TransactionService {
   private repo = new TransactionRepository();
@@ -10,8 +11,13 @@ export class TransactionService {
     return this.repo.create(userId, input);
   }
 
-  async list(userId: string, page: number, limit: number) {
-    return this.repo.list(userId, page, limit);
+  async list(
+    userId: string,
+    page: number,
+    limit: number,
+    filter?: TransactionFilter,
+  ) {
+    return this.repo.list(userId, page, limit, filter);
   }
 
   async update(userId: string, input: UpdateTransactionInput) {

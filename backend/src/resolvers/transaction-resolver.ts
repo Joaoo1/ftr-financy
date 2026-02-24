@@ -19,11 +19,12 @@ export class TransactionResolver {
 
   @Query(() => TransactionListOutput)
   async transactions(
-    @Args(() => TransactionListArgs) { page, limit }: TransactionListArgs,
+    @Args(() => TransactionListArgs)
+    { page, limit, filter }: TransactionListArgs,
     @Ctx() ctx: AppContext,
   ): Promise<TransactionListOutput> {
     const userId = requireUserId(ctx);
-    return this.service.list(userId, page, limit);
+    return this.service.list(userId, page, limit, filter);
   }
 
   @Mutation(() => TransactionModel)
