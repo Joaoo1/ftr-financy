@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "../hooks/context/useAuth";
 import { Button } from "../components/button";
 import { Input } from "../components/input";
+import { getInitials } from "../utils/string";
 import {
   Form,
   FormControl,
@@ -42,14 +43,6 @@ export default function Profile() {
   const handleSubmit = (data: UpdateProfileInput) => {
     updateUser({ name: data.name.trim() });
   };
-
-  const getInitials = (name: string) =>
-    name
-      .split(" ")
-      .map((w) => w[0])
-      .join("")
-      .toUpperCase()
-      .slice(0, 2);
 
   const nameValue = form.watch("name");
   const isDirty = nameValue !== user?.name;
