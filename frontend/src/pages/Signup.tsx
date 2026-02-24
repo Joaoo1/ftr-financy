@@ -65,6 +65,7 @@ export function Signup() {
                 type="text"
                 placeholder="Seu nome completo"
                 value={name}
+                className="pl-10"
                 required
                 onChange={(e) => setName(e.target.value)}
               />
@@ -80,6 +81,7 @@ export function Signup() {
                 type="email"
                 placeholder="mail@exemplo.com"
                 value={email}
+                className="pl-10"
                 required
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -95,6 +97,7 @@ export function Signup() {
                 type={showPassword ? "text" : "password"}
                 placeholder="Digite sua senha"
                 value={password}
+                className="pl-10"
                 required
                 onChange={(e) => setPassword(e.target.value)}
                 minLength={8}

@@ -5,6 +5,7 @@ import { Signup } from "../pages/Signup";
 import { DefaultLayout } from "../layouts/DefaultLayout";
 import { RouteWrapper } from "./RouteWrapper";
 import { Dashboard } from "../pages/Dashboard";
+import Categories from "../pages/Categories";
 
 export function Router() {
   return (
@@ -45,7 +46,7 @@ export function Router() {
           element={
             <RouteWrapper isPrivate>
               <DefaultLayout>
-                <h1>Categorias</h1>
+                <Categories />
               </DefaultLayout>
             </RouteWrapper>
           }

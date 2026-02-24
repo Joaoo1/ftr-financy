@@ -45,6 +45,7 @@ export function Login() {
                 type="email"
                 placeholder="email@exemplo.com"
                 value={email}
+                className="pl-10"
                 required
                 onChange={(e) => {
                   setEmail(e.target.value);
@@ -61,6 +62,7 @@ export function Login() {
                 type={showPassword ? "text" : "password"}
                 placeholder="Digite sua senha"
                 value={password}
+                className="pl-10"
                 required
                 onChange={(e) => {
                   setPassword(e.target.value);

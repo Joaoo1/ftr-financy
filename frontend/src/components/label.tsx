@@ -1,6 +1,5 @@
 import * as LabelPrimitive from "@radix-ui/react-label";
-
-import { cn } from "../lib/tailwind/utils";
+import { cn } from "tailwind-variants";
 
 function Label({
   className = "",
