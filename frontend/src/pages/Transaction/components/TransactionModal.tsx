@@ -149,6 +149,7 @@ export function TransactionModal({
                   <FormControl>
                     <Input
                       placeholder="Ex. Almoço no restaurante"
+                      required
                       {...field}
                       value={field.value || ""}
                     />
@@ -159,7 +160,7 @@ export function TransactionModal({
             />
 
             {/* Date and Value */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 items-start">
               <FormField
                 control={form.control}
                 name="date"
@@ -168,7 +169,7 @@ export function TransactionModal({
                     <FormLabel>Data</FormLabel>
                     <FormControl>
                       <div className="relative">
-                        <Input type="date" {...field} />
+                        <Input type="date" required {...field} />
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -191,6 +192,7 @@ export function TransactionModal({
                           type="text"
                           inputMode="decimal"
                           placeholder="0,00"
+                          required
                           className="pl-10"
                           value={field.value ? formatCurrency(field.value) : ""}
                           onChange={(e) => {
