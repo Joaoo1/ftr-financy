@@ -17,6 +17,7 @@ interface AuthContextProps {
   loginError: string | null;
   isLoadingAuthInfo: boolean;
   user: User | null;
+  updateUserName: (name: string) => Promise<void>;
 }
 
 export const AuthContext = createContext({} as AuthContextProps);
@@ -60,6 +61,15 @@ export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
     window.location.href = "/";
   };
 
+  const updateUserName = async (name: string) => {
+    if (!user) return;
+
+    const data = { ...user, name };
+
+    setUser(data);
+    await localforage.setItem("user", data);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -70,6 +80,7 @@ export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
         logout,
         isLoggingIn,
         loginError,
+        updateUserName,
       }}
     >
       {children}

@@ -7,6 +7,7 @@ import { RouteWrapper } from "./RouteWrapper";
 import { Dashboard } from "../pages/Dashboard";
 import Categories from "../pages/Categories";
 import Transactions from "../pages/Transaction";
+import Profile from "../pages/Profile";
 
 export function Router() {
   return (
@@ -67,7 +68,7 @@ export function Router() {
           element={
             <RouteWrapper isPrivate>
               <DefaultLayout>
-                <h1>Perfil</h1>
+                <Profile />
               </DefaultLayout>
             </RouteWrapper>
           }
