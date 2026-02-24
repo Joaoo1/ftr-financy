@@ -19,6 +19,7 @@ import type { Transaction, TransactionType } from "../../types";
 import { CategoryIcon } from "../../components/category-icon";
 import { lightenColor } from "../../utils/colors";
 import { TransactionModal } from "./components/TransactionModal";
+import { ConfirmDialog } from "../../components/confirm-dialog";
 import { useCategories } from "../../hooks/api/useCategories";
 import { useCreateTransaction } from "../../hooks/api/useCreateTransaction";
 import { useDeleteTransaction } from "../../hooks/api/useDeleteTransaction";
@@ -28,6 +29,7 @@ import { useTransactions } from "../../hooks/api/useTransactions";
 
 export default function Transactions() {
   const modal = useTransactionModal();
+  const [deleteId, setDeleteId] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const [perPage] = useState(10);
 
@@ -61,7 +63,7 @@ export default function Transactions() {
 
   const { mutate: deleteTransaction } = useDeleteTransaction({
     onSuccess: () => {
-      modal.closeModal();
+      setDeleteId(null);
       refetch();
       toast.success("Transação deletada com sucesso!");
     },
@@ -93,8 +95,8 @@ export default function Transactions() {
     },
   });
 
-  const handleDeleteTransaction = (deleteTransactionId: string) => {
-    deleteTransaction(deleteTransactionId);
+  const handleDeleteTransaction = () => {
+    if (deleteId) deleteTransaction(deleteId);
   };
 
   const handleSubmitModal = (data: CreateTransactionInput) => {
@@ -234,9 +236,7 @@ export default function Transactions() {
                         <td className="w-28 px-6 py-4">
                           <div className="flex items-center gap-2 justify-end">
                             <Button
-                              onClick={() =>
-                                handleDeleteTransaction(transaction.id)
-                              }
+                              onClick={() => setDeleteId(transaction.id)}
                               className="w-9 h-9 bg-white border border-gray-100 rounded-lg shadow-sm flex items-center justify-center hover:bg-red-50 hover:border-red-100 transition-all"
                               title="Excluir"
                             >
@@ -366,6 +366,14 @@ export default function Transactions() {
         categories={categories?.items ?? []}
         title={modal.mode === "create" ? "Nova Transação" : "Editar Transação"}
         defaultValues={modal.getDefaultValues()}
+      />
+
+      <ConfirmDialog
+        open={!!deleteId}
+        onOpenChange={(open) => !open && setDeleteId(null)}
+        onConfirm={handleDeleteTransaction}
+        title="Excluir transação"
+        description={`Tem certeza que deseja excluir "${transactions?.items.find((t) => t.id === deleteId)?.description}"? Esta ação não pode ser desfeita.`}
       />
     </main>
   );

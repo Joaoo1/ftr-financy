@@ -59,9 +59,12 @@ export function useDashboard() {
 
       const summary = computeSummary(data.transactions.items);
 
+      const categories = data.categories.items.slice(0, 5);
+      const transactions = data.transactions.items.slice(0, 5);
+
       return {
-        categories: data.categories,
-        transactions: data.transactions,
+        categories: { items: categories, total: data.categories.total },
+        transactions: { items: transactions, total: data.transactions.total },
         ...summary,
       };
     },

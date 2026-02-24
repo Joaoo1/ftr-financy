@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Plus, Tag, ArrowUpDown, SquarePen, Trash } from "lucide-react";
 
 import { useCategoryModal } from "../../hooks/useCategoryModal";
@@ -10,15 +11,17 @@ import { CategoryIcon } from "../../components/category-icon";
 import { lightenColor } from "../../utils/colors";
 import type { CreateCategoryInput } from "../../schemas/createCategory";
 import { CategoryModal } from "./components/CategoryModal";
+import { ConfirmDialog } from "../../components/confirm-dialog";
 import { toast } from "sonner";
 
 export default function Categories() {
   const modal = useCategoryModal();
+  const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const { data: categories, isLoading, refetch } = useCategories();
   const { mutate: deleteCategory } = useDeleteCategory({
     onSuccess: () => {
-      modal.closeModal();
+      setDeleteId(null);
       refetch();
       toast.success("Categoria deletada com sucesso!");
     },
@@ -50,8 +53,8 @@ export default function Categories() {
     },
   });
 
-  const handleDeleteCategory = (deleteCategoryId: string) => {
-    deleteCategory(deleteCategoryId);
+  const handleDeleteCategory = () => {
+    if (deleteId) deleteCategory(deleteId);
   };
 
   const handleSubmitModal = (data: CreateCategoryInput) => {
@@ -166,7 +169,7 @@ export default function Categories() {
                   />
                   <div className="flex items-center gap-2">
                     <Button
-                      onClick={() => handleDeleteCategory(category.id)}
+                      onClick={() => setDeleteId(category.id)}
                       className="w-9 h-9 bg-white border border-gray-100 rounded-lg shadow-sm flex items-center justify-center hover:bg-red-50 hover:border-red-100 transition-all"
                       title="Excluir"
                     >
@@ -219,6 +222,14 @@ export default function Categories() {
         onSubmit={handleSubmitModal}
         title={modal.mode === "create" ? "Nova Categoria" : "Editar Categoria"}
         defaultValues={modal.getDefaultValues()}
+      />
+
+      <ConfirmDialog
+        open={!!deleteId}
+        onOpenChange={(open) => !open && setDeleteId(null)}
+        onConfirm={handleDeleteCategory}
+        title="Excluir categoria"
+        description={`Tem certeza que deseja excluir "${categories?.items.find((c) => c.id === deleteId)?.title}"? Esta ação não pode ser desfeita.`}
       />
     </main>
   );

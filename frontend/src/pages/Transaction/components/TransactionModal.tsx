@@ -242,7 +242,12 @@ export function TransactionModal({
               )}
             />
 
-            <Button type="submit" disabled={isLoading} className="w-full">
+            <Button
+              type="submit"
+              disabled={isLoading}
+              className="w-full"
+              size="lg"
+            >
               {isLoading ? "Salvando..." : "Salvar"}
             </Button>
           </form>
