@@ -13,6 +13,7 @@ import { useDashboard } from "../hooks/api/useDashboard";
 import { Loading } from "../components/loading";
 import { CategoryIcon } from "../components/category-icon";
 import { lightenColor } from "../utils/colors";
+import { formatCurrency } from "../utils/currency";
 
 export function Dashboard() {
   const { data, isLoading } = useDashboard();
@@ -39,10 +40,7 @@ export function Dashboard() {
               </span>
             </div>
             <div className="text-gray-900 text-xl sm:text-2xl lg:text-[28px] font-bold font-['Inter']">
-              R${" "}
-              {totalBalance.toLocaleString("pt-BR", {
-                minimumFractionDigits: 2,
-              })}
+              R$ {formatCurrency(totalBalance)}
             </div>
           </div>
 
@@ -54,10 +52,7 @@ export function Dashboard() {
               </span>
             </div>
             <div className="text-gray-900 text-xl sm:text-2xl lg:text-[28px] font-bold font-['Inter']">
-              R${" "}
-              {monthlyIncome.toLocaleString("pt-BR", {
-                minimumFractionDigits: 2,
-              })}
+              R$ {formatCurrency(monthlyIncome)}
             </div>
           </div>
 
@@ -69,10 +64,7 @@ export function Dashboard() {
               </span>
             </div>
             <div className="text-gray-900 text-xl sm:text-2xl lg:text-[28px] font-bold font-['Inter']">
-              R${" "}
-              {monthlyExpenses.toLocaleString("pt-BR", {
-                minimumFractionDigits: 2,
-              })}
+              R$ {formatCurrency(monthlyExpenses)}
             </div>
           </div>
         </div>
@@ -140,9 +132,7 @@ export function Dashboard() {
                         <div className="flex items-center gap-2">
                           <span className="text-gray-900 text-sm sm:text-base font-bold font-['Inter']">
                             {transaction.type === "INCOME" ? "+" : "-"} R${" "}
-                            {transaction.amount.toLocaleString("pt-BR", {
-                              minimumFractionDigits: 2,
-                            })}
+                            {formatCurrency(transaction.amount)}
                           </span>
                           {transaction.type === "INCOME" ? (
                             <CircleArrowUp className="w-5 h-5 text-green-500" />
@@ -208,10 +198,7 @@ export function Dashboard() {
                         {item.transactionsCount} itens
                       </span>
                       <span className="w-24 text-right text-gray-900 text-sm font-semibold">
-                        R${" "}
-                        {item.transactionsTotalAmount.toLocaleString("pt-BR", {
-                          minimumFractionDigits: 2,
-                        })}
+                        R$ {formatCurrency(item.transactionsTotalAmount)}
                       </span>
                     </div>
                   );

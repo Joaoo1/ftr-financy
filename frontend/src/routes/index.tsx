@@ -6,6 +6,7 @@ import { DefaultLayout } from "../layouts/DefaultLayout";
 import { RouteWrapper } from "./RouteWrapper";
 import { Dashboard } from "../pages/Dashboard";
 import Categories from "../pages/Categories";
+import Transactions from "../pages/Transaction";
 
 export function Router() {
   return (
@@ -56,17 +57,7 @@ export function Router() {
           element={
             <RouteWrapper isPrivate>
               <DefaultLayout>
-                <h1>Transações</h1>
-              </DefaultLayout>
-            </RouteWrapper>
-          }
-        />
-        <Route
-          path="/nova-transacao"
-          element={
-            <RouteWrapper isPrivate>
-              <DefaultLayout>
-                <h1>Nova Transação</h1>
+                <Transactions />
               </DefaultLayout>
             </RouteWrapper>
           }

@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const LIST_TRANSACTIONS = gql`
-  query GetTransactions($page: Int, $limit: Int) {
-    transactions(page: $page, limit: $limit) {
+  query GetTransactions($page: Int, $limit: Int, $filter: TransactionFilter) {
+    transactions(page: $page, limit: $limit, filter: $filter) {
       items {
         id
         description

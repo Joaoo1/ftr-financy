@@ -93,7 +93,7 @@ export function CategoryModal({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         showCloseButton={false}
-        className="sm:max-w-106.25 bg-white border-gray-200"
+        className="max-w-106.25 bg-white border-gray-200"
       >
         <DialogClose>
           <LucideIcons.X className="size-4" />
